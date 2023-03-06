@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="8a38aac0-71f4-4493-a8d5-f88eddd3748d" xsi:noNamespaceSchemaLocation="https://www.jetbrains.com/teamcity/schemas/2021.1/project-config.xsd">
+  <name>[1.0] Compile &amp; UT [AUTO]</name>
+  <description />
+  <settings ref="CDCompileUTGradle">
+    <parameters />
+    <build-runners order="RUNNER_275, RUNNER_2383, RUNNER_2473, RUNNER_880, RUNNER_2384, RUNNER_2987, RUNNER_860">
+      <runner id="RUNNER_2384" name="Build &amp; Publish to Artifactory" type="gradle-runner">
+        <parameters>
+          <param name="jvmArgs"><![CDATA[-Duser.name=%teamcity.agent.jvm.user.name% -Duser.home=%teamcity.agent.jvm.user.home%
+%JAVA_OPTS%]]></param>
+          <param name="org.jfrog.artifactory.selectedDeployableServer.defaultModuleVersionConfiguration" value="GLOBAL" />
+          <param name="target.jdk.home" value="%env.JAVA_HOME%" />
+          <param name="teamcity.build.workingDir" value="%WORK_DIR%" />
+          <param name="teamcity.coverage.emma.include.source" value="true" />
+          <param name="teamcity.coverage.emma.instr.parameters" value="-ix -*Test*" />
+          <param name="teamcity.coverage.idea.includePatterns" value="*" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="ui.gradleRunner.additional.gradle.cmd.params"><![CDATA[--info
+%GRADLE_STANDARD_PARAMETERS%
+%GRADLE_EXTRA_PARAMETERS%]]></param>
+          <param name="ui.gradleRunner.gradle.home" value="%env.BUILD_ENV%/GRADLE/%GRADLE_VERSION%" />
+          <param name="ui.gradleRunner.gradle.stacktrace.enabled" value="true" />
+          <param name="ui.gradleRunner.gradle.tasks.names" value="%GRADLE_TASK%" />
+          <param name="ui.gradleRunner.gradle.wrapper.useWrapper" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="RDDepartment_F1SandboxProject_TestGh_RDDepartmentF1SandboxProjectTestComponent2vcsRoot" />
+    </vcs-settings>
+    <requirements />
+    <build-triggers />
+    <cleanup />
+  </settings>
+</build-type>
+
